@@ -33,12 +33,12 @@ export default{
 </script>
 
 <template>
-  <form @submit.prevent="addTodo">
-    <input v-model="newTodo" placeholder="Task Description">
-    <input v-model="newPet" placeholder="Pet Name">
+  <form class="my-10" @submit.prevent="addTodo">
+    <input class="input input-bordered input-accent w-full max-w-xs mx-10" v-model="newTodo" placeholder="Task Description">
+    <input class="input input-bordered input-accent w-full max-w-xs mx-10" v-model="newPet" placeholder="Pet Name">
     <label for="date">Date last given:</label>
-    <input type="date" id="date" name="date" v-model="newLastDate"> <!-- Bind input value to newLastDate -->
-    <button>Add Todo</button>    
+    <input class="input input-bordered input-accent w-full max-w-xs mx-10" type="date" id="date" name="date" v-model="newLastDate"> <!-- Bind input value to newLastDate -->
+    <button class="btn btn-primary">Add Todo</button>    
   </form>
   
   <!-- 
@@ -51,27 +51,32 @@ export default{
     </li>
   </ul>    -->
 
-  <table class="table">
-    <tr>
-        <th>Pet Name</th>
-        <th>Task</th>
-        <th>Last Given</th>
-        <th></th>
-    </tr>
-    <tr v-for="todo in todos" :key="todo.id">
-        <td>{{todo.pet}}</td>
-        <td>{{todo.text}}</td>
-        <td>{{todo.lastDate}}</td>
-        <td><button @click="removeTodo(todo)">Delete</button></td>
-    </tr>
+  <div class="overflow-x-auto">
+
+    <table class="table">
+    <thead>
+        <tr>
+            <th className="">Pet Name</th>
+            <th>Task</th>
+            <th>Last Given</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr v-for="todo in todos" :key="todo.id">
+            <td>{{todo.pet}}</td>
+            <td>{{todo.text}}</td>
+            <td>{{todo.lastDate}}</td>
+            <td><button class="btn btn-outline btn-error" @click="removeTodo(todo)">Delete</button></td>
+        </tr>
+    </tbody>
   </table>
+
+  </div>
 
 </template>
 
 <style>
-h2{
-    color: yellow;
-}
 
 .table {
     border-collapse: collapse; /* Collapse borders to ensure proper rendering */
